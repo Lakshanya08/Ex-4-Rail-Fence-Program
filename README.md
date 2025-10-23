@@ -18,8 +18,28 @@ STEP-3: Now read the keyword depending on the number of columns of the plain tex
 STEP-4: Arrange the characters of the keyword in sorted order and the corresponding columns of the plain text.
 STEP-5: Read the characters row wise or column wise in the former order to get the cipher text.
 
-# PROGRAM
+# PROGRAM:
+```
+message = input("Enter the message: ").replace(" ", "").upper()
+rails = int(input("Enter number of rails: "))
+fence = [''] * rails
+row = 0
+down = True
+for char in message:
+    fence[row] += char
+  
+    if down:
+        row += 1
+    else:
+        row -= 1
+    if row == rails - 1 or row == 0:
+        down = not down
+cipher_text = ''.join(fence)
+print("Encrypted Text:", cipher_text)
+```
+# OUTPUT:
 
-# OUTPUT
+<img width="347" height="76" alt="image" src="https://github.com/user-attachments/assets/3a0a3b47-44e7-4859-a8d8-d8202589ef99" />
 
-# RESULT
+# RESULT:
+Thus the implementation of vigenere cipher had been executed successfully.
