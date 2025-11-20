@@ -20,26 +20,33 @@ STEP-5: Read the characters row wise or column wise in the former order to get t
 
 # PROGRAM:
 ```
-message = input("Enter the message: ").replace(" ", "").upper()
+msg = input("Enter the message: ").replace(" ", "").upper()
 rails = int(input("Enter number of rails: "))
-fence = [''] * rails
-row = 0
-down = True
-for char in message:
-    fence[row] += char
-  
-    if down:
-        row += 1
-    else:
-        row -= 1
-    if row == rails - 1 or row == 0:
-        down = not down
-cipher_text = ''.join(fence)
-print("Encrypted Text:", cipher_text)
+
+zig = list(range(rails)) + list(range(rails-2, 0, -1))
+cipher = ""
+for r in range(rails):
+    for i, ch in enumerate(msg):
+        if zig[i % len(zig)] == r:
+            cipher += ch
+
+print("Encrypted Text:", cipher)
+
+pattern = [zig[i % len(zig)] for i in range(len(cipher))]
+
+plain = [""] * len(cipher)
+idx = 0
+for r in range(rails):
+    for i in range(len(cipher)):
+        if pattern[i] == r:
+            plain[i] = cipher[idx]
+            idx += 1
+
+print("Decrypted Text:", "".join(plain))
 ```
 # OUTPUT:
+<img width="548" height="108" alt="image" src="https://github.com/user-attachments/assets/da9d9d65-6683-433e-a1b5-805f1ee774e0" />
 
-<img width="347" height="76" alt="image" src="https://github.com/user-attachments/assets/3a0a3b47-44e7-4859-a8d8-d8202589ef99" />
 
 # RESULT:
 Thus the implementation of vigenere cipher had been executed successfully.
